@@ -36,7 +36,7 @@ if(test == "failed"){
 }else{
     //In cazul in care parametru nu este egal cu valoarea de mai sus evaluata o sa ascundem content-ul div-ului 
     
-    documbent.getElementsByClassName("b-none")[0].style.display = "none";
+    document.getElementsByClassName("b-none")[0].style.display = "none";
 }
 
 

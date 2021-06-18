@@ -1,9 +1,9 @@
 <?php
-  session_start();
+    session_start();
 
     $display_message_visibility = "";
     $display_message = ""; 
-
+ 
 
   function corectez($sir) {
     $sir = trim($sir);
@@ -45,11 +45,11 @@
       mysqli_stmt_bind_param($stm, 'ss',$nume, $parola);
       mysqli_stmt_execute($stm);
       $rez = mysqli_stmt_get_result($stm); // obtin multimea de selectie
-
-        
+     
       if ($linie = mysqli_fetch_assoc($rez) ) {
         $_SESSION['logat'] = true;
         $_SESSION['nume'] = $linie['username'];
+
           
     mysqli_close($cnx);
 //  Reincarc "index.php"

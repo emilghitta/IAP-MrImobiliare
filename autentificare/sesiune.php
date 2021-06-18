@@ -13,7 +13,13 @@ if(isset($_SESSION['logat']) && $_SESSION['logat'] == true) {
     
 }
 
+$pagina;
 
+    if($_SESSION['nume'] == "MrImobiliare"){
+          $pagina = 'PaginaAdministrator.php';
+      }else{
+          $pagina = 'PaginaAgenti.php';
+      }   
 
 
 include 'conectare.php';

@@ -1,6 +1,5 @@
 <?php
      include 'autentificare/sesiune.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -42,19 +41,19 @@
             <li><a href="Proprietati.php">Proprietati</a></li>
             <li class="active"><a href="Agenti.php">Agenti</a></li>
             <li><a href="Contact.php">Contact</a></li>
-              
-              
-             
+               
             <li class = "<?= $display_btcon ?>">
             <a href="Conectare.php" class="btn-get-started">Conectare Agent</a>  
+            </li> 
+              
+              <li class = "<?= $display_btcon ?>">
+            <a href="autentificare/delogare.php" class="btn-get-started">Conectare Agent</a>  
             </li> 
           
          
             <li class = "<?= $display_btdecon ?>">
-            <a href="autentificare/delogare.php" class="btn-get-started"><?= $nume ?></a>  
+            <a href="<?= $pagina ?>" class="btn-get-started"><?= $nume ?></a>  
             </li> 
-        
-            
                   
           </ul>
           <div class="extra-text visible-xs"> 
