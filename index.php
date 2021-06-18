@@ -63,8 +63,6 @@
     </div>
     <ul class="slides">
       <li style="background-image: url(img/slider_1.jpg);" class="overlay"></li>
-      <li style="background-image: url(img/slider_4.jpg);" class="overlay"></li>
-      <li style="background-image: url(img/slider_2.jpg);" class="overlay"></li>
     </ul>
   </section>
   <!-- END: slider  -->
@@ -313,55 +311,32 @@
       <div class="row heading">
         <h2 class="mt0 mb50 text-center">Agentii Nostrii</h2>
       </div>
-      <div class="row">
-        <div class="col-md-3">
+        
+          <div class="row">
+        
+        <?php 
+        
+        $interogare = "SELECT nume_agent, prenume_agent, poza_agent FROM agenti";
+        $trimit = mysqli_query($cnx, $interogare) or die("Eroare:" . mysqli_error($cnx));
+
+        while($rez = mysqli_fetch_assoc($trimit)) :?>
+          
+         <div class="col-md-3">
           <div class="probootstrap-card probootstrap-person text-left">
             <div class="probootstrap-card-media">
-              <img src="img/person_1.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
+              <img src="img/agenti/<?= $rez['poza_agent'] ?>" class="img-responsive">
             </div>
             <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading mb0">Jeremy Slater</h2>
-              <p><small>Real Estate Brooker</small></p>
-              <p><a href="#">View Details</a></p>
+              <h2 class="probootstrap-card-heading mb0"><?= $rez['nume_agent'] ?> <?= $rez['prenume_agent'] ?></h2>
+                
             </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="probootstrap-card probootstrap-person text-left">
-            <div class="probootstrap-card-media">
-              <img src="img/person_2.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading mb0">James Butterly</h2>
-              <p><small>Buying Agent</small></p>
-              <p><a href="#">View Details</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-card probootstrap-person text-left">
-            <div class="probootstrap-card-media">
-              <img src="img/person_3.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading mb0">James Smith</h2>
-              <p><small>Real Estate Brooker</small></p>
-              <p><a href="#">View Details</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="probootstrap-card probootstrap-person text-left">
-            <div class="probootstrap-card-media">
-              <img src="img/person_4.jpg" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
-            </div>
-            <div class="probootstrap-card-text">
-              <h2 class="probootstrap-card-heading mb0">Chris White</h2>
-              <p><small>Selling Agent</small></p>
-              <p><a href="#">View Details</a></p>
-            </div>
-          </div>
-        </div>
+      
+        <?php endwhile;
+            
+            ?> 
+          
       </div>
     </div>
   </section>
