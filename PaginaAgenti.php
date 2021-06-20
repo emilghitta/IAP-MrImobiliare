@@ -1,7 +1,5 @@
 <?php
     include 'Header.php';
-    include 'autentificare/logare.php';
-
 
     if(!isset($_SESSION['logat'])){
         header("Location: Conectare.php");

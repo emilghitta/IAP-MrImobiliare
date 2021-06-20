@@ -1,12 +1,13 @@
 <?php
     include 'Header.php';
-    include 'autentificare/logare.php';
     
 //    session_start();
     if(!isset($_SESSION['logat'])){
         header("Location: Conectare.php");
 } else if($_SESSION['nume'] != "MrImobiliare" ){
         header("Location: index.php");
+        
+        //Trebuie incercata renuntarea la hardcodarea numelui utilizatorului (in locul MrImobiliare sa facem un retrieve la numele din tabelul admin)
     }
 
 ?>

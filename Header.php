@@ -1,5 +1,5 @@
 <?php
-     include 'autentificare/sesiune.php';
+     include 'autentificare/logare.php';
 ?>
 
 <!DOCTYPE html>
@@ -45,12 +45,7 @@
             <li class = "<?= $display_btcon ?>">
             <a href="Conectare.php" class="btn-get-started">Conectare Agent</a>  
             </li> 
-              
-              <li class = "<?= $display_btcon ?>">
-            <a href="autentificare/delogare.php" class="btn-get-started">Conectare Agent</a>  
-            </li> 
-          
-         
+               
             <li class = "<?= $display_btdecon ?>">
             <a href="<?= $pagina ?>" class="btn-get-started"><?= $nume ?></a>  
             </li> 

@@ -1,6 +1,5 @@
 <?php
     include 'Header.php';
-    include 'autentificare/logare.php';
 
 
 ?>
