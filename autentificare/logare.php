@@ -18,6 +18,11 @@ if(isset($_SESSION['logat']) && $_SESSION['logat'] == true) {
     
 }
 
+  $nume;
+  $parola;
+
+
+//Ne ajuta pentru nav bar in header.php
 $pagina;
 
     if($_SESSION['nume'] == "MrImobiliare"){
@@ -25,6 +30,7 @@ $pagina;
       }else{
           $pagina = 'PaginaAgenti.php';
       }
+
 
   function corectez($sir) {
     $sir = trim($sir);
@@ -36,8 +42,7 @@ $pagina;
   // preiau valorile din campurile formularului (nume și parola) 
   $eroare = '';
 
-  $nume;
-  $parola;
+
 
   if(empty($_POST['username'])) {
       
@@ -62,6 +67,7 @@ $pagina;
 
     // formulez comanda SELECT
     $comanda = "SELECT username, password FROM agenti  where username = ? and password = ?";
+    $comanda2 = "SELECT username, password FROM admin where username = ? and password = ?";  
     if ($stm = mysqli_prepare($cnx, $comanda)) {
       mysqli_stmt_bind_param($stm, 'ss',$nume, $parola);
       mysqli_stmt_execute($stm);
@@ -77,10 +83,23 @@ $pagina;
     header('Location: ../index.php');
           
   } else {
-    $display_message_visibility = "b-block";
-    $display_message = "Credentiale Invalide!";      
-    header("Location: ../Conectare.php?test=failed");
-    
+          $stm = mysqli_prepare($cnx,$comanda2);
+          mysqli_stmt_bind_param($stm, 'ss',$nume, $parola);
+          mysqli_stmt_execute($stm);
+          $rez = mysqli_stmt_get_result($stm);
+          
+          if($linie = mysqli_fetch_assoc($rez)){
+              $_SESSION['logat'] = true;
+              $_SESSION['nume'] = $linie['username'];
+              
+                mysqli_close($cnx);
+//  Reincarc "index.php"
+    header('Location: ../index.php');
+          }else{
+                 $display_message_visibility = "b-block";
+                $display_message = "Credentiale Invalide!";      
+                header("Location: ../Conectare.php?test=failed");
+          }
   }
          
       }else{
