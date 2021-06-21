@@ -1,6 +1,7 @@
 <?php
     include 'Header.php';
     
+    
 //    session_start();
     if(!isset($_SESSION['logat'])){
         header("Location: Conectare.php");
@@ -25,6 +26,18 @@
     <link rel="stylesheet" href="css/styles-merged.css">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/custom.css">
+      
+      <style>
+          
+    table, th, td {
+  border: 1px solid black;
+}
+
+    table td{
+  width: 100%;
+}  
+          
+      </style>
 
   </head>
 
@@ -38,14 +51,120 @@
 <div class="back">
 
   <div class="div-center">
-    <div class="content">
+      
+        <main id="main">
+      <div class="container">
+        <h2 class="text-center" style="padding-top: 120px;">Agenti:</h2>
+      </div>
+      <div class="container" style="width: 500px;">
+        <table class="table mt-5" style="border-bottom: 2px solid #DEE2E6">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nume</th>
+              <th scope="col">Prenume</th>
+              <th scope="col">Username</th>
+              <th scope="col">Password</th>    
+              <th scope="col" class="text-center">Operații</th>
+            </tr>
+          </thead>
+          <tbody>
+<?php
+  $interogare = "SELECT * FROM agenti";
+  $linii = mysqli_query($cnx, $interogare) or die("Eroare: " . mysqli_error($cnx));
+  $i = 1;  //  $i este un contor care va fi incrementat în ciclul while
+  while($rez = mysqli_fetch_assoc($linii)):
+?>
+            <tr>
+              <th scope="row"><?= $i ?></th>
+              <td class="w-70"><?= $rez['nume_agent'] ?></td>
+              <td class="w-70"><?= $rez['prenume_agent'] ?></td> 
+              <td class="w-70"><?= $rez['username'] ?></td>
+              <td class="w-70"><?= $rez['password'] ?></td> 
+              <td class="w-30 text-center">
+                <a href="PaginaAdministrator.php?editez=<?= $rez['id_agent'] ?>">
+                  <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>  
+                <a href="autentificare/stergFunctie.php?sterg=<?= $rez['id_agent'] ?>">
+                  <i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+              </td>
+            </tr>
+<?php 
+  $i++;
+  endwhile;
+
+?>
+          </tbody>
+        </table> 
+      </div>
+    
+      <div class="container mt-5" style="width: 500px;">
+          <h3>Adauga Agent:</h3>
+        <form method="post" action="autentificare/adaugFunctie.php">
+          <div class="form-group">
+            <label for="nume_agent">Nume Agent:</label>
+            <input class="form-control" id="nume_agent" name="nume_agent" type="text" required>
+            <label for="prenume_agent">Prenume Agent:</label>
+            <input class="form-control" id="prenume_agent" name="prenume_agent" type="text"required>
+            <label for="username">Username:</label>
+            <input class="form-control" id="username" name="username" type="text" required>
+            <label for="password">Password:</label>
+            <input class="form-control" id="password" name="password" type="text" required>  
+          </div>
+              
+          <button type="submit" class="btn btn-secondary ">Adaugă Agent!</button>
+        </form>
+      </div>
+            
+<?php
+  //  Caut functia care trebuie editata
+      
+            if(isset($_GET["editez"])){
+  $editez = $_GET["editez"]; 
+  $caut = "SELECT * FROM agenti where id_agent = $editez";
+  $rezultat = mysqli_query($cnx, $caut);
+  $rez = mysqli_fetch_assoc($rezultat);
+   mysqli_close($cnx);  
+            }
+            
+
+?>
+            
+            <div class="container mt-5" style="width: 500px;">
+                <h3>Editeaza Agent:</h3>
+        <form method="post" action="autentificare/editFunctie.php">
+          <input type="hidden" name="editez" value="<?= $editez ?>">
+          <div class="form-group">
+            <label for="functia">Nume Agent:</label>
+            <input class="form-control" id="nume_agent_edit" name="nume_agent_edit" type="text" value="<?= $rez['nume_agent'] ?>">
+            <label for="functia">Prenume Agent:</label>
+            <input class="form-control" id="prenume_agent_edit" name="prenume_agent_edit" type="text" value="<?= $rez['prenume_agent'] ?>">
+            <label for="functia">Username Agent:</label>
+            <input class="form-control" id="username_agent_edit" name="username_agent_edit" type="text" value="<?= $rez['username'] ?>">
+            <label for="functia">Password Agent:</label>
+            <input class="form-control" id="password_agent_edit" name="password_agent_edit" type="text" value="<?= $rez['password'] ?>">  
+          </div>
+              
+          <button type="submit" class="btn btn-secondary ">Modifică!</button>
+        </form>
+      </div>
+            
+            
+            
+            
+               <div class="content">
+                
          <a href="autentificare/delogare.php" class="btn btn-primary">Delogare</a>
 
-    </div>
+    </div>  
+    </main>
+
+           
+            
+    
 
   </div>
 
-</div>
+
 
 
 
@@ -55,6 +174,7 @@
   <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
   </div>
+    </div>
   
 
   <script src="js/scripts.min.js"></script>

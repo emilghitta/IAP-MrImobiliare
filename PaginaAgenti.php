@@ -28,13 +28,16 @@
   <!-- START: header -->
   
   <div class="probootstrap-loader"></div>
-      
-        
-   
+  
+
 <div class="back">
+    
 
   <div class="div-center">
+
     <div class="content">
+        
+  
          <a href="autentificare/delogare.php" class="btn btn-primary">Delogare</a>
 
     </div>
