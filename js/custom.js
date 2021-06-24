@@ -25,9 +25,15 @@ document.getElementsByClassName("d-none")[0].style.display = "none";
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     var test = urlParams.get('test');
+    
 
 //Verificam daca avem edit mai mare de 0 ca valoare in parametru. Daca avem, apelam metoda displayEdit() care va face display la form-ul de editare
     var edit = urlParams.get('editez');
+    var editProprietate = urlParams.get('editezProprietate');
+
+if(editProprietate > 0){
+    displayEditProprietate();
+}
 
 if(edit > 0){
    displayEdit();
@@ -50,6 +56,11 @@ if(test == "failed"){
 
 //Folosim urmatoarele metode pentru afisarea/ascunderea form-urilor de adaugare/editare cand are loc comutarea intre ele.
 
+
+function displayEditProprietate(){
+    varEditProprietate = document.getElementById("editareProprietateActivata");
+    varEditProprietate.style.display = "";
+}
 
 function displayEdit(){
     

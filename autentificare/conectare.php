@@ -1,4 +1,5 @@
 <?php
+//Ne conectam la baza de date
 
     $cnx = mysqli_connect("localhost","root","","mrimobiliare");
     if(mysqli_connect_errno()){

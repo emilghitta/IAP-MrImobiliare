@@ -3,8 +3,13 @@
     
     
 //    session_start();
+
+//Daca nu exista utilizator logat, nu v-om putea accesa pagina administratorului in mod direct.
+
     if(!isset($_SESSION['logat'])){
         header("Location: Conectare.php");
+        
+//Daca sessiunea este activa iar variabila de sesiune "nume" nu contine MrImobiliare, atunci nu putem sa accesam PaginaAdministrator-ului (nu putem accesa pagina administrator-ului in mod direct cat timp suntem logat cat si agent)
 } else if($_SESSION['nume'] != "MrImobiliare" ){
         header("Location: index.php");
         
