@@ -26,6 +26,14 @@ document.getElementsByClassName("d-none")[0].style.display = "none";
     var urlParams = new URLSearchParams(queryString);
     var test = urlParams.get('test');
 
+//Verificam daca avem edit mai mare de 0 ca valoare in parametru. Daca avem, apelam metoda displayEdit() care va face display la form-ul de editare
+    var edit = urlParams.get('editez');
+
+if(edit > 0){
+   displayEdit();
+   }
+
+
 if(test == "failed"){
     //Daca gasim valoarea failed in parametrul test atunci o sa atribuim clasa b-block div-ului de eroare, setam text-ul de eroare si ii facem highlight in rosu
     
@@ -37,6 +45,33 @@ if(test == "failed"){
     //In cazul in care parametru nu este egal cu valoarea de mai sus evaluata o sa ascundem content-ul div-ului 
     
     document.getElementsByClassName("b-none")[0].style.display = "none";
+}
+
+
+//Folosim urmatoarele metode pentru afisarea/ascunderea form-urilor de adaugare/editare cand are loc comutarea intre ele.
+
+
+function displayEdit(){
+    
+    varEditForm = document.getElementById("editareActivata");
+    varEditForm.style.display = "";
+    
+}
+
+function hideEdit(){
+    varEditForm = document.getElementById("editareActivata");
+    varEditForm.style.display = "none";
+}
+
+function displayAdaugare(){
+    varAdaugForm = document.getElementById("adaugareActiva");
+    varAdaugForm.style.display = "";
+    
+}
+
+function hideAdaugare(){
+    varAdaugForm = document.getElementById("adaugareActiva");
+    varAdaugForm.style.display = "none";
 }
 
 

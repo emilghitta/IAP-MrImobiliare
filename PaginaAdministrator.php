@@ -37,6 +37,9 @@
   width: 100%;
 }  
           
+}
+
+          
       </style>
 
   </head>
@@ -54,7 +57,7 @@
       
         <main id="main">
       <div class="container">
-        <h2 class="text-center" style="padding-top: 120px;">Agenti:</h2>
+          <h2 class="text-center" style="padding-top: 120px;">Agenti: <sup><button class="addNewAgent" style="width:20px; height:20px;" onclick="displayAdaugare(); hideEdit();">+</button></sup></h2>
       </div>
       <div class="container" style="width: 500px;">
         <table class="table mt-5" style="border-bottom: 2px solid #DEE2E6">
@@ -72,7 +75,7 @@
 <?php
   $interogare = "SELECT * FROM agenti";
   $linii = mysqli_query($cnx, $interogare) or die("Eroare: " . mysqli_error($cnx));
-  $i = 1;  //  $i este un contor care va fi incrementat în ciclul while
+  $i = 1;  
   while($rez = mysqli_fetch_assoc($linii)):
 ?>
             <tr>
@@ -88,6 +91,8 @@
                   <i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
               </td>
             </tr>
+              
+              
 <?php 
   $i++;
   endwhile;
@@ -97,9 +102,9 @@
         </table> 
       </div>
     
-      <div class="container mt-5" style="width: 500px;">
+      <div class="container mt-5" style="width: 500px;display:none;" id="adaugareActiva">
           <h3>Adauga Agent:</h3>
-        <form method="post" action="autentificare/adaugFunctie.php">
+        <form method="post" action="autentificare/adaugFunctie.php" enctype="multipart/form-data">
           <div class="form-group">
             <label for="nume_agent">Nume Agent:</label>
             <input class="form-control" id="nume_agent" name="nume_agent" type="text" required>
@@ -109,14 +114,19 @@
             <input class="form-control" id="username" name="username" type="text" required>
             <label for="password">Password:</label>
             <input class="form-control" id="password" name="password" type="text" required>  
+              <label for="fileUpload">Add Image:</label>  
+            <input id="fileUpload" type="file" name="uploadfile" value="" required/>    
+              
           </div>
               
           <button type="submit" class="btn btn-secondary ">Adaugă Agent!</button>
         </form>
       </div>
             
+            
+            
 <?php
-  //  Caut functia care trebuie editata
+  //  Cautam agentul care trebuie edita bazat pe id-ul agentului care este egal cu valoarea lui editez
       
             if(isset($_GET["editez"])){
   $editez = $_GET["editez"]; 
@@ -129,7 +139,7 @@
 
 ?>
             
-            <div class="container mt-5" style="width: 500px;">
+            <div class="container mt-5" id="editareActivata" style="width: 500px;display:none; ">
                 <h3>Editeaza Agent:</h3>
         <form method="post" action="autentificare/editFunctie.php">
           <input type="hidden" name="editez" value="<?= $editez ?>">
@@ -141,7 +151,8 @@
             <label for="functia">Username Agent:</label>
             <input class="form-control" id="username_agent_edit" name="username_agent_edit" type="text" value="<?= $rez['username'] ?>">
             <label for="functia">Password Agent:</label>
-            <input class="form-control" id="password_agent_edit" name="password_agent_edit" type="text" value="<?= $rez['password'] ?>">  
+            <input class="form-control" id="password_agent_edit" name="password_agent_edit" type="text" value="<?= $rez['password'] ?>">
+        
           </div>
               
           <button type="submit" class="btn btn-secondary ">Modifică!</button>
