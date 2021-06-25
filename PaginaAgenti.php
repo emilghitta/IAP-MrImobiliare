@@ -58,7 +58,7 @@
       
         <main id="main">
       <div class="container">
-          <h2 class="text-center" style="padding-top: 120px;">Detalii Cont: <sup><button class="addNewAgent" style="width:20px; height:20px;" onclick="displayEditare(); hideEdit();">+</button></sup></h2>
+          <h2 class="text-center" style="padding-top: 120px;">Detalii Cont:</h2>
       </div>
       <div class="container" style="width: 500px;">
         <table class="table mt-5" style="border-bottom: 2px solid #DEE2E6">

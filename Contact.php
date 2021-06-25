@@ -57,46 +57,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <form action="#" method="post" class="probootstrap-form mb60">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="fname">First Name</label>
-                  <input type="text" class="form-control" id="fname" name="fname">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="lname">Last Name</label>
-                  <input type="text" class="form-control" id="lname" name="lname">
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" name="email">
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea cols="30" rows="10" class="form-control" id="message" name="message"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Send Message">
-            </div>
-          </form>
-        </div>
-        <div class="col-md-3 col-md-push-1">
-          <h4>Contact Details</h4>
+             <h4>Contact Details</h4>
           <ul class="with-icon colored">
             <li><i class="icon-location2"></i> <span>Satu Mare. Petru Bran nr 23</span></li>
             <li><i class="icon-mail"></i><span>mrImobiliare@gmail.com</span></li>
             <li><i class="icon-phone2"></i><span>075589854</span></li>
           </ul>
 
-          <h4>Feedback</h4>
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          <p><a href="#">Learn More</a></p>
+
         </div>
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2680.5561150943513!2d22.869038815803595!3d47.79005467919716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473805ce76acb65d%3A0x9b4d69f1c232ba87!2sStrada%20Petru%20Bran%2023%2C%20Satu%20Mare!5e0!3m2!1sen!2sro!4v1624621621388!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" ></iframe>
       </div>
     </div>
   </section>  
