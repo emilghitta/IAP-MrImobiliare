@@ -51,7 +51,13 @@ move_uploaded_file($tempName, $folder);
     }
     mysqli_close($cnx);
     //  Reincarc "functii.php"
-    header('Location: ../PaginaAdministrator.php');
+     if($_SESSION['nume'] != "MrImobiliare" ){
+        header("Location: ../PaginaAgent.php");
+        
+        //Trebuie incercata renuntarea la hardcodarea numelui utilizatorului (in locul MrImobiliare sa facem un retrieve la numele din tabelul admin)
+    }else{
+        header("Location: ../PaginaAdministrator.php");
+    }
  
 
 ?>

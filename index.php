@@ -29,36 +29,7 @@
       
   <section class="probootstrap-slider flexslider">
     <div class="probootstrap-wrap-banner">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-
-            <div class="probootstrap-home-search probootstrap-animate">
-              <form action="" method="post">
-                <h2 class="heading">Gaseste-ti casa visurilor</h2>
-                <div class="probootstrap-field-group">
-                  <div class="probootstrap-fields">
-                    
-                    <div class="search-field">
-                      <i class="icon-location2"></i>
-                      <input type="text" class="form-control" placeholder="Enter address, ZIP code, Neighborhoods">
-                    </div>
-                    <div class="search-category">
-                      <i class="icon-chevron-down"></i>
-                      <select name="#" id="" class="form-control">
-                        <option value="">Vanzare</option>
-                        <option value="">Inchiriere</option>
-                      </select>
-                    </div>
-                  </div>
-                  <button class="btn btn-success" type="submit"><i class="icon-magnifying-glass t2"></i> Start Search</button>
-                </div>
-              </form>
-            </div>
-
-          </div>
-        </div>
-      </div>
+     <img src="img/cover.jpg" style="width:100%;">
     </div>
     <ul class="slides">
       <li style="background-image: url(img/slider_1.jpg);" class="overlay"></li>
@@ -73,8 +44,8 @@
       <div class="row heading">
         <h2 class="mt0 mb50 text-center">Proprietati Promovate</h2>
       </div>
-      <div class="row">
-          
+      <div class="row ">
+         
     <?php
           
           $interogareProprietatiPromovate = "SELECT poza_proprietate, descriere_proprietate, locatie_proprietate, pret_proprietate, suprafata_proprietate, nr_camere, nr_bucatarii, nr_bai, status_proprietate FROM proprietati WHERE status_promovare = '1'";
@@ -83,8 +54,8 @@
           while($rezProprietatiPromovate = mysqli_fetch_assoc($trimitQueryProprietatiPromovate)) :?>
           
           
-        <div class="col-md-4 col-sm-6">
-          <div class="probootstrap-card probootstrap-listing">
+        
+          <div class="probootstrap-card probootstrap-listing" style="width:300px; margin-left: 20px; margin-right:20px;">
             <div class="probootstrap-card-media">
               <img src="img/casa1/<?= $rezProprietatiPromovate['poza_proprietate'] ?>" class="img-responsive" alt="Free HTML5 Template by uicookies.com">
               <a href="#" class="probootstrap-love"><i class="icon-heart"></i></a>

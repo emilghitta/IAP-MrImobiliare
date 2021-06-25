@@ -80,8 +80,14 @@ function displayAdaugare(){
     
 }
 
-function hideAdaugare(){
-    varAdaugForm = document.getElementById("adaugareActiva");
+function displayAdaugareProprietate(){
+    varAdaugForm = document.getElementById("adaugareProprietateActiva");
+    varAdaugForm.style.display = "";
+    
+}
+
+function hideAdaugareProprietate(){
+    varAdaugForm = document.getElementById("editareProprietateActivata");
     varAdaugForm.style.display = "none";
 }
 

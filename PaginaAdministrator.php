@@ -84,7 +84,7 @@
   while($rez = mysqli_fetch_assoc($linii)):
 ?>
             <tr>
-              <th scope="row"><?= $i ?></th>
+              <th scope="row"><?= $rez['id_agent'] ?></th>
               <td class="w-70"><?= $rez['nume_agent'] ?></td>
               <td class="w-70"><?= $rez['prenume_agent'] ?></td> 
               <td class="w-70"><?= $rez['username'] ?></td>
@@ -138,7 +138,7 @@
   $caut = "SELECT * FROM agenti where id_agent = $editez";
   $rezultat = mysqli_query($cnx, $caut);
   $rez = mysqli_fetch_assoc($rezultat);
-   mysqli_close($cnx);  
+   
             }
             
 
@@ -164,7 +164,164 @@
         </form>
       </div>
             
+             <div class="container">
+          <h2  style="padding-top: 120px;">Proprietati: <sup><button class="addNewAgent" style="width:20px; height:20px;" onclick="displayAdaugareProprietate(); hideAdaugareProprietate();">+</button></sup></h2>
+      </div>
+      <div style="width: 500px;">
+        <table class="table mt-5" style="border-bottom: 2px solid #DEE2E6">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Id Agent Responsabil:</th>     
+              <th scope="col">Descriere Proprietate:</th>    
+              <th scope="col">Locatie</th>
+              <th scope="col">Pret</th>
+              <th scope="col">Suprafata</th>
+              <th scope="col">Nr.Camere</th>
+              <th scope="col">Nr.Bai</th>    
+              <th scope="col">Nr.Bucatarii</th>    
+              <th scope="col">Status</th>
+              <th scope="col">Status Promovare</th>
+                
+              <th scope="col" class="text-center">Operații</th>
+            </tr>
+          </thead>
+          <tbody>
+              
+    <?php 
+    
+  
+  $interogareProprietati = "SELECT * FROM proprietati";
+  $liniiProprietate = mysqli_query($cnx, $interogareProprietati) or die("Eroare: " . mysqli_error($cnx));
+  $i = 1;  
+  while($rezProp = mysqli_fetch_assoc($liniiProprietate)):
+?>
+            <tr>
+              <td class="w-70"><?= $rezProp['id_proprietate'] ?></td>
+                <td class="w-70"><?= $rezProp['id_agent'] ?></td>
+              <td class="w-70"><?= $rezProp['descriere_proprietate'] ?></td> 
+              <td class="w-70"><?= $rezProp['locatie_proprietate'] ?></td>
+              <td class="w-70"><?= $rezProp['pret_proprietate'] ?></td> 
+             <td class="w-70"><?= $rezProp['suprafata_proprietate'] ?></td> 
+             <td class="w-70"><?= $rezProp['nr_camere'] ?></td> 
+             <td class="w-70"><?= $rezProp['nr_bai'] ?></td> 
+             <td class="w-70"><?= $rezProp['nr_bucatarii'] ?></td> 
+             <td class="w-70"><?= $rezProp['status_proprietate'] ?></td>
+             <td class="w-70"><?= $rezProp['status_promovare'] ?></td> 
+              <td class="w-30 text-center">
+                <a href="PaginaAdministrator.php?editezProprietate=<?= $rezProp['id_proprietate'] ?>">
+                  <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>  
+                <a href="autentificare/stergProprietate.php?stergProprietate=<?= $rezProp['id_proprietate'] ?>">
+                  <i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+              </td>
+            </tr>
+              
+              
+<?php 
+  $i++;
+  endwhile;
+
+?>
+          </tbody>
+        </table> 
+      </div>        
+              
+                <div class="container mt-5" style="width: 500px;display:none;" id="adaugareProprietateActiva">
+          <h3>Adauga Proprietate:</h3>
+        <form method="post" action="autentificare/adaugProprietate.php" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="descriere_proprietate">Descirere:</label>
+            <input class="form-control" id="descriere_proprietate" name="descriere_proprietate" type="text" required>
+            <label for="locatie_proprietate">Locatie:</label>
+            <input class="form-control" id="locatie_proprietate" name="locatie_proprietate" type="text"required>
+            <label for="pret_proprietate">Pret:</label>
+            <input class="form-control" id="pret_proprietate" name="pret_proprietate" type="text" required>
+            <label for="id_agent">Id Agent:</label> 
+              <input class="form-control" id="id_agent" name="id_agent" type="text" required>
+            <label for="suprafata_proprietate">Suprafata:</label>
+            <input class="form-control" id="suprafata_proprietate" name="suprafata_proprietate" type="text" required>  
+              <label for="camere_proprietate">Camere:</label>  <br>
+            <input id="camere_proprietate" type="text" name="camere_proprietate"  required/> <br>   
+                  <label for="bai_proprietate">Bai:</label>  <br>
+            <input id="bai_proprietate" type="text" name="bai_proprietate" required/>  <br>
+                  <label for="bucatarii_proprietate">Bucatarii:</label>  <br>
+            <input id="bucatarii_proprietate" type="text" name="bucatarii_proprietate" required/>  <br>
+                  <label for="status_proprietate">Status Proprietate:</label>  <br>
+            <input id="status_proprietate" type="text" name="status_proprietate"required/>  <br>
+                  <label for="status_proprietate">Status Promovare:</label>  <br>
+            <input id="status_promovare" type="text" name="status_promovare" required/>  <br>
+                  <label for="fileUploadProprietate">Poza:</label>  <br>
+            <input id="fileUploadProprietate" type="file" name="fileUploadProprietate" value="" required/>    
+              
+          </div>
+              
+          <button type="submit" class="btn btn-secondary ">Adaugă Proprietate!</button>
+        </form>
+      </div>   
             
+            <?php
+
+      
+  if(isset($_GET["editezProprietate"])){
+  $editezPropr = $_GET["editezProprietate"]; 
+  $cautPro = "SELECT * FROM proprietati where id_proprietate = $editezPropr";
+  $rezultatEdPropr = mysqli_query($cnx, $cautPro);
+  $rezEdPropr = mysqli_fetch_assoc($rezultatEdPropr);
+ 
+            }
+            
+?>
+            
+            <div class="container mt-5" id="editareProprietateActivata" style="width: 500px;display:none; ">
+                <h3>Editeaza Proprietate:</h3>
+        <form method="post" action="autentificare/editProprietate.php">
+          <input type="hidden" name="editezProprietate" value="<?= $editezPropr ?>">
+          <div class="form-group">
+              
+            <label for="descriere_proprietate">Descriere</label>
+            <input class="form-control" id="descriere_proprietate" name="descriere" type="textarea" value="<?= $rezEdPropr['descriere_proprietate'] ?>">
+              
+            <label for="locatie_proprietate">Locatie:</label>
+             <input class="form-control" id="locatie_proprietate" name="locatie" type="text" value="<?= $rezEdPropr['locatie_proprietate'] ?>">
+              
+             <label for="pret_proprietate">Pret:</label>  
+             <input class="form-control" id="pret_proprietate" name="pret" type="text" value="<?= $rezEdPropr['pret_proprietate'] ?>">
+              
+              
+              <label for="suprafata_proprietate">Suprafata:</label>  
+             <input class="form-control" id="suprafata_proprietate" name="suprafata" type="text" value="<?= $rezEdPropr['suprafata_proprietate'] ?>">
+              
+              
+               <label for="nr_camere">Camere:</label> 
+             <input class="form-control" id="nr_camere" name="camere" type="text" value="<?= $rezEdPropr['nr_camere'] ?>">
+              
+              
+            <label for="nr_bai">Bai:</label> 
+             <input class="form-control" id="nr_bai" name="bai" type="text" value="<?= $rezEdPropr['nr_bai'] ?>">
+              
+            <label for="nr_bucatarii">Bucatarii:</label>   
+             <input class="form-control" id="nr_bucatarii" name="bucatarii" type="text" value="<?= $rezEdPropr['nr_bucatarii'] ?>">
+              
+              
+            <label for="status_proprietate">Status Vanzare:</label>     
+             <input class="form-control" id="status_proprietate" name="statusProprietate" type="select" value="<?= $rezEdPropr['status_proprietate'] ?>">
+              
+<!--              Maybe redo this ^ to select -->
+              
+             <!--              Sa adaugam si poza pentru proprietate? --> 
+              
+            <label for="status_promovare">Status Promovare:</label>     
+             <input class="form-control" id="status_promovare" name="promovare" type="text" value="<?= $rezEdPropr['status_promovare'] ?>">  
+              
+              
+              
+            
+        
+          </div>
+              
+          <button type="submit" class="btn btn-secondary ">Modifică Proprietate!</button>
+        </form>
+      </div>            
             
             
                <div class="content">

@@ -56,18 +56,18 @@
         <section class="probootstrap-section probootstrap-section-lighter">
         <div class="container">
         <div class="row">
-            
+           
+          
             
     <?php 
         $interogare = "SELECT poza_proprietate, descriere_proprietate, locatie_proprietate, pret_proprietate, suprafata_proprietate, nr_camere, nr_bai, nr_bucatarii, status_proprietate FROM proprietati";
         $trimit = mysqli_query($cnx, $interogare) or die("Erroare: " . mysqli_error($cnx));
 
         while($rez = mysqli_fetch_assoc($trimit)) :?>
-            
-            <div class="col-md-4 col-sm-6">
-          <div class="probootstrap-card probootstrap-listing">
+            <div class="probootstrap-card probootstrap-listing">
+           
             <div class="probootstrap-card-media">
-              <img src="img/casa1/<?= $rez['poza_proprietate'] ?>" class="img-responsive" >
+              <img src="img/casa1/<?= $rez['poza_proprietate'] ?>" class="img-responsive" width="100%">
             </div>
             <div class="probootstrap-card-text">
               <h2 class="probootstrap-card-heading"><a href="#"><?= $rez['descriere_proprietate'] ?></a></h2>

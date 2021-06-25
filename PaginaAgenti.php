@@ -8,7 +8,6 @@
 }else if($_SESSION['nume'] == "MrImobiliare" ){
         header("Location: index.php");
         
-        //Trebuie incercata renuntarea la hardcodarea numelui utilizatorului (in locul MrImobiliare sa facem un retrieve la numele din tabelul admin)
     }
     
 
@@ -66,7 +65,6 @@
             <tr>
               <th scope="col">Nume</th>
               <th scope="col">Prenume</th>
-              <th scope="col">Username</th>
               <th scope="col">Password</th>
               <th scope="col">Optiuni</th>
         
@@ -84,7 +82,6 @@
             <tr>
               <td class="w-70"><?= $rez['nume_agent'] ?></td>
               <td class="w-70"><?= $rez['prenume_agent'] ?></td> 
-              <td class="w-70"><?= $rez['username'] ?></td>
               <td class="w-70"><?= $rez['password'] ?></td> 
               <td class="w-30 text-center">
                 <a href="PaginaAgenti.php?editez=<?= $rez['id_agent'] ?>">
@@ -120,8 +117,6 @@
             <input class="form-control" id="nume_agent_edit" name="nume_agent_edit" type="text" value="<?= $rez['nume_agent'] ?>">
             <label for="functia">Prenume Agent:</label>
             <input class="form-control" id="prenume_agent_edit" name="prenume_agent_edit" type="text" value="<?= $rez['prenume_agent'] ?>">
-            <label for="functia">Username Agent:</label>
-            <input class="form-control" id="username_agent_edit" name="username_agent_edit" type="text" value="<?= $rez['username'] ?>">
             <label for="functia">Password Agent:</label>
             <input class="form-control" id="password_agent_edit" name="password_agent_edit" type="text" value="<?= $rez['password'] ?>">
         
@@ -132,7 +127,7 @@
       </div>
             
    <div class="container">
-          <h2  style="padding-top: 120px;">Proprietati: <sup><button class="addNewAgent" style="width:20px; height:20px;" onclick="displayAdaugare(); hideEdit();">+</button></sup></h2>
+          <h2  style="padding-top: 120px;">Proprietati:</h2>
       </div>
       <div style="width: 500px;">
         <table class="table mt-5" style="border-bottom: 2px solid #DEE2E6">
@@ -179,8 +174,6 @@
               <td class="w-30 text-center">
                 <a href="PaginaAgenti.php?editezProprietate=<?= $rezProp['id_proprietate'] ?>">
                   <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>  
-                <a href="autentificare/stergProprietate.php?stergProprietate=<?= $rez['id_agent'] ?>">
-                  <i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
               </td>
             </tr>
               
@@ -192,7 +185,8 @@
 ?>
           </tbody>
         </table> 
-      </div>         
+      </div>     
+            
             
 <?php
 
@@ -210,7 +204,7 @@
             <div class="container mt-5" id="editareProprietateActivata" style="width: 500px;display:none; ">
                 <h3>Editeaza Proprietate:</h3>
         <form method="post" action="autentificare/editProprietate.php">
-          <input type="hidden" name="editez" value="<?= $editezPropr ?>">
+          <input type="hidden" name="editezProprietate" value="<?= $editezPropr ?>">
           <div class="form-group">
               
             <label for="descriere_proprietate">Descriere</label>
